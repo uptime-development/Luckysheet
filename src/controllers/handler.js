@@ -27,6 +27,7 @@ import {hideMenuByCancel} from '../global/cursorPos';
 import { luckysheetdefaultstyle } from './constant';
 import {checkProtectionLockedRangeList,checkProtectionAllSelected,checkProtectionSelectLockedOrUnLockedCells,checkProtectionNotEnable,checkProtectionAuthorityNormal} from './protection';
 import { openCellFormatModel } from './cellFormat';
+import LuckyExcel from 'luckyexcel';
 
 import { 
     replaceHtml,
@@ -4859,6 +4860,62 @@ export default function luckysheetHandler() {
 
         splitColumn.createDialog();
         splitColumn.init();
+    });
+
+    $("#luckysheet-import-excel").click(function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!checkIsAllowEdit()) {
+            tooltip.info("", locale().pivotTable.errorNotAllowEdit);
+            return
+        }
+        if(!checkProtectionNotEnable(Store.currentSheetIndex)){
+            return;
+        }
+
+        if (Store.luckysheet_select_save == null || Store.luckysheet_select_save.length == 0) {
+            return;
+        }
+
+        if (window.confirm('Importing an excel file will overwrite the whole worksheet. Do you want to continue')) {
+            $("#luckysheet-excelUpload").click();    
+        }
+    });
+
+    $("#luckysheet-excelUpload").on("change", function(event) {
+      const files = event.target.files;
+      if (files == null || files.length == 0) {
+        alert("No files selected");
+        return;
+      }
+      let name = files[0].name;
+      let suffixArr = name.split("."),
+        suffix = suffixArr[suffixArr.length - 1];
+      if (suffix != "xlsx") {
+        alert("Currently only supports the import of xlsx files");
+        return;
+      }
+      LuckyExcel.transformExcelToLucky(
+        files[0],
+        function (exportJson, luckysheetfile) {
+          if (exportJson.sheets == null || exportJson.sheets.length == 0) {
+            alert(
+              "Failed to read the content of the excel file, currently does not support xls files!"
+            );
+            return;
+          }
+          window.luckysheet.destroy();
+          window.luckysheet.create({
+            container: "luckysheet", //luckysheet is the container id
+            showinfobar: false,
+            data: exportJson.sheets,
+            title: exportJson.info.name,
+            userInfo: exportJson.info.name.creator,
+          });
+        }
+      );
+
+
     });
 
     //菜单栏 插入图片按钮

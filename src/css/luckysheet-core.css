@@ -211,6 +211,7 @@
     border-bottom: 1px solid #d4d4d4;
     white-space: nowrap;
     transition: all 0.2s;
+    display:flex;
 }
 
 /* 

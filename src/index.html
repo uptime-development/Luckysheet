@@ -6,7 +6,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0" />
-	<title>Luckysheet</title>
 
 	<link rel='stylesheet' href='./plugins/css/pluginsCss.css' />
 	<link rel='stylesheet' href='./plugins/plugins.css' />
@@ -16,7 +15,6 @@
 
 	<!-- rollup luckysheet.js -->
 	<script src="./luckysheet.umd.js"></script>
-
 </head>
 
 <body>
@@ -89,21 +87,6 @@
 					// 	selectOption: [10, 20]
 					// },
 					forceCalculation:false,
-					plugins: ['chart'],
-					fontList:[
-						{
-						"fontName":"HanaleiFill",
-						"url":"./assets/iconfont/HanaleiFill-Regular.ttf"
-						},
-						{
-						"fontName":"Anton",
-						"url":"./assets/iconfont/Anton-Regular.ttf"
-						},
-						{
-						"fontName":"Pacifico",
-						"url":"./assets/iconfont/Pacifico-Regular.ttf"
-						}
-					],
 					hook:{
 						cellDragStop: function (cell, postion, sheetFile, ctx, event) {
 			                // console.info(cell, postion, sheetFile, ctx, event);
@@ -1883,14 +1866,6 @@
 					</svg>`
 				},
 				imageClass:"loadingAnimation"
-			}
-			options.cellRightClickConfig = {
-				customs: [{
-					title: 'test',
-					onClick: function (clickEvent, event, params) {
-						console.log('function test click', clickEvent, event, params)
-					}
-				}]
 			}
 			luckysheet.create(options);
 			})
