@@ -2672,7 +2672,7 @@ body:not(.ewa-ipad) .luckysheet-rows-h-cell-sel:hover {
 } */
 
 
-.btn {
+.luckysheet .btn {
     display: inline-block;
     margin-bottom: 0;
     font-weight: normal;
@@ -2694,26 +2694,26 @@ body:not(.ewa-ipad) .luckysheet-rows-h-cell-sel:hover {
     user-select: none;
 }
 
-.btn:focus,
-.btn:active:focus,
-.btn.active:focus,
-.btn.focus,
-.btn:active.focus,
-.btn.active.focus {
+.luckysheet .btn:focus,
+.luckysheet .btn:active:focus,
+.luckysheet .btn.active:focus,
+.luckysheet .btn.focus,
+.luckysheet .btn:active.focus,
+.luckysheet .btn.active.focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
 }
 
-.btn:hover,
-.btn:focus,
-.btn.focus {
+.luckysheet .btn:hover,
+.luckysheet .btn:focus,
+.luckysheet .btn.focus {
     color: #333333;
     text-decoration: none;
 }
 
-.btn:active,
-.btn.active {
+.luckysheet .btn:active,
+.luckysheet .btn.active {
     outline: 0;
     background-image: none;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
